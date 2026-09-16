@@ -1,0 +1,5 @@
+{# A list, bulleted or numbered. #}
+{% set tag = block.isOrdered() ? 'ol' : 'ul' %}
+<{{ tag }}>
+    {% for item in block.items %}<li>{{ item|raw }}</li>{% endfor %}
+</{{ tag }}>

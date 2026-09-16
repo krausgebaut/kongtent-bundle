@@ -1,0 +1,23 @@
+{# A picture with its sizes; `sizes` lets a browser measure the frame of a lazy
+   picture and falls back to the whole window. #}
+<figure>
+    <img
+        src="{{ block.picture.url }}"
+        {% if block.picture.getSourceSet() %}
+            srcset="{{ block.picture.getSourceSet() }}"
+            sizes="auto, 100vw"
+        {% endif %}
+        alt="{{ block.picture.alternativeText }}"
+        width="{{ block.picture.width }}"
+        height="{{ block.picture.height }}"
+        loading="lazy"
+        decoding="async"
+    >
+    {% if block.picture.caption or block.picture.credit %}
+        <figcaption>
+            {{- block.picture.caption -}}
+            {% if block.picture.caption and block.picture.credit %} {% endif %}
+            {%- if block.picture.credit %}<small>{{ block.picture.credit }}</small>{% endif -%}
+        </figcaption>
+    {% endif %}
+</figure>

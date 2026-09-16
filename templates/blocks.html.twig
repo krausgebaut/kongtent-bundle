@@ -1,0 +1,4 @@
+{# The body of a content, each block through the template named after its type. #}
+{% for block in blocks %}
+    {% include '@Kongtent/blocks/' ~ block.type ~ '.html.twig' with { block: block } only %}
+{% endfor %}

@@ -1,0 +1,127 @@
+{
+    "date": "2026-06-01T09:00:00+02:00",
+    "headline": "Every block",
+    "teaser": "Eight kinds, *one* content.",
+    "meta_title": "Every block",
+    "meta_description": "A description of every-block.",
+    "category": "Notes",
+    "slug": "every-block",
+    "cover_image": null,
+    "blocks": [
+        {
+            "type": "paragraph",
+            "text": "A paragraph with **emphasis**."
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "A heading"
+        },
+        {
+            "type": "list",
+            "style": "bullet",
+            "items": [
+                "First item",
+                "Second item"
+            ]
+        },
+        {
+            "type": "quote",
+            "text": "A quotation.",
+            "source": "A speaker"
+        },
+        {
+            "type": "image",
+            "alt": "A single picture",
+            "caption": "A caption.",
+            "credit": "A credit",
+            "sources": [
+                {
+                    "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000004\/small.jpg",
+                    "width": 480,
+                    "height": 360
+                },
+                {
+                    "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000004\/medium.jpg",
+                    "width": 960,
+                    "height": 720
+                },
+                {
+                    "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000004\/large.jpg",
+                    "width": 1920,
+                    "height": 1440
+                }
+            ]
+        },
+        {
+            "type": "gallery",
+            "images": [
+                {
+                    "type": "image",
+                    "alt": "First in the gallery",
+                    "caption": null,
+                    "credit": null,
+                    "sources": [
+                        {
+                            "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000005\/small.jpg",
+                            "width": 480,
+                            "height": 360
+                        },
+                        {
+                            "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000005\/medium.jpg",
+                            "width": 960,
+                            "height": 720
+                        },
+                        {
+                            "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000005\/large.jpg",
+                            "width": 1920,
+                            "height": 1440
+                        }
+                    ]
+                },
+                {
+                    "type": "image",
+                    "alt": "Second in the gallery",
+                    "caption": null,
+                    "credit": null,
+                    "sources": [
+                        {
+                            "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000006\/small.jpg",
+                            "width": 480,
+                            "height": 360
+                        },
+                        {
+                            "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000006\/medium.jpg",
+                            "width": 960,
+                            "height": 720
+                        },
+                        {
+                            "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000006\/large.jpg",
+                            "width": 1920,
+                            "height": 1440
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "details",
+            "items": [
+                {
+                    "label": "Format",
+                    "value": "A4"
+                },
+                {
+                    "label": "Weight",
+                    "value": "*Heavy* paper"
+                }
+            ]
+        },
+        {
+            "type": "embed",
+            "url": "https:\/\/www.youtube.com\/watch?v=abcdefghijk",
+            "provider": "youtube",
+            "key": "abcdefghijk"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{# Several pictures, each through the image template. #}
+<ul>
+    {% for image in block.images %}
+        <li>{% include '@Kongtent/blocks/image.html.twig' with { block: image } only %}</li>
+    {% endfor %}
+</ul>

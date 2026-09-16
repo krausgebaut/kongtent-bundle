@@ -1,0 +1,5 @@
+{# A quotation: the sentence rendered, the speaker escaped. #}
+<figure>
+    <blockquote><p>{{ block.html|raw }}</p></blockquote>
+    {% if block.source %}<figcaption>{{ block.source }}</figcaption>{% endif %}
+</figure>

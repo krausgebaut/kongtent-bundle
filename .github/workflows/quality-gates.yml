@@ -1,0 +1,45 @@
+# The quality gates, run by a machine instead of by hand.
+#
+# A package, not an application: no lock file is committed, so the gate installs
+# what a site requiring the bundle would get today, and `composer validate` runs
+# in full.
+name: Quality gates
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  gates:
+    name: Lint and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      # The version the sites run on.
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          coverage: none
+
+      - name: Validate the composer file
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress
+
+      - name: Check the coding style
+        run: vendor/bin/php-cs-fixer check --diff
+
+      # Piped through xargs on purpose: with `-exec` the step reports the exit
+      # status of `find`, which GNU find leaves at zero even when the linter
+      # failed. xargs passes the failure through.
+      - name: Lint PHP
+        run: find src tests -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      # A bundle has no console: `TemplatesTest` compiles the templates, and
+      # `KongtentBundleTest` boots a container with the bundle in it.
+      - name: Test
+        run: vendor/bin/phpunit

@@ -1,0 +1,7 @@
+{# A term list: the name escaped, the value rendered. #}
+<dl>
+    {% for item in block.items %}
+        <dt>{{ item.label }}</dt>
+        <dd>{{ item.html|raw }}</dd>
+    {% endfor %}
+</dl>

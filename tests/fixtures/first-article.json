@@ -1,0 +1,47 @@
+{
+    "date": "2026-08-28T09:00:00+02:00",
+    "headline": "The first article",
+    "teaser": "A teaser with _emphasis_.",
+    "meta_title": "The first article",
+    "meta_description": "A description of first-article.",
+    "category": "Updates",
+    "slug": "first-article",
+    "cover_image": {
+        "type": "image",
+        "alt": "A placeholder picture",
+        "caption": null,
+        "credit": null,
+        "sources": [
+            {
+                "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000001\/small.jpg",
+                "width": 480,
+                "height": 360
+            },
+            {
+                "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000001\/medium.jpg",
+                "width": 960,
+                "height": 720
+            },
+            {
+                "url": "https:\/\/kongtent.example\/media\/0199a1b2-0000-7000-8000-000000000001\/large.jpg",
+                "width": 1920,
+                "height": 1440
+            }
+        ]
+    },
+    "blocks": [
+        {
+            "type": "quote",
+            "text": "A quotation.",
+            "source": "A speaker"
+        },
+        {
+            "type": "paragraph",
+            "text": "A paragraph with a [link](https:\/\/example.com)."
+        },
+        {
+            "type": "paragraph",
+            "text": "A line  \nand the next one."
+        }
+    ]
+}
