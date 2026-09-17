@@ -51,6 +51,7 @@ final readonly class Reader
             $this->optionalText($payload, 'category'),
             \is_array($payload['cover_image'] ?? null) ? $this->picture($payload['cover_image'], $slug) : null,
             $this->blocks($this->listOf($payload, 'blocks', $slug), $slug),
+            false !== ($payload['listed'] ?? true),
         );
     }
 

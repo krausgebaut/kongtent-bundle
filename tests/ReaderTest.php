@@ -34,6 +34,12 @@ final class ReaderTest extends TestCase
         $this->reader = new Reader(new Markdown(), new NullLogger());
     }
 
+    public function testAContentIsListedUnlessKongtentSaysOtherwise(): void
+    {
+        self::assertTrue($this->reader->toContent($this->payload([]))->listed);
+        self::assertFalse($this->reader->toContent(['listed' => false] + $this->payload([]))->listed);
+    }
+
     public function testABlockNobodyKnowsIsSkippedAndTheRestStands(): void
     {
         $content = $this->reader->toContent($this->payload([

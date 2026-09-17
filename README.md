@@ -47,7 +47,7 @@ Inject `Krausgebaut\KongtentBundle\Client`:
 
 | # | Method | Answers |
 | --- | --- | --- |
-| 1 | `all()` | Every visible content of the channel, newest first, **without blocks** |
+| 1 | `all()` | Every visible and listed content of the channel, newest first, **without blocks** |
 | 2 | `one($slug)` | One content with its blocks, or `null` where the channel has no such slug |
 
 A list of contents is not a list of texts: whoever draws an overview works from `all()`, whoever shows a text asks `one()`.
@@ -65,7 +65,7 @@ A list of contents is not a list of texts: whoever draws an overview works from 
 | 7 | `Picture` | – | `alternativeText`, `caption`, `credit` |
 | 8 | `QuoteBlock` | `html` | `source` |
 
-`Content` also carries `date`, `coverImage` as a `Picture` or `null`, `blocks` and `getYear()`. A `Picture` answers `getUrl()`, `getWidth()` and `getHeight()` for its largest size and `getSourceSet()` for a `srcset`, or `null` where there is only one size. An `ImageBlock` carries its `picture`, a `GalleryBlock` its `images`.
+`Content` also carries `date`, `coverImage` as a `Picture` or `null`, `blocks`, `listed` and `getYear()`. `listed` is `false` only where kongtent says so: a content left out of the lists and read by its slug alone. A `Picture` answers `getUrl()`, `getWidth()` and `getHeight()` for its largest size and `getSourceSet()` for a `srcset`, or `null` where there is only one size. An `ImageBlock` carries its `picture`, a `GalleryBlock` its `images`.
 
 ## Rendering
 

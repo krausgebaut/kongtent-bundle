@@ -31,6 +31,7 @@ final readonly class Content
         public ?string $category,
         public ?Picture $coverImage,
         public array $blocks = [],
+        public bool $listed = true,
     ) {
     }
 

@@ -43,7 +43,7 @@ final readonly class Client
     }
 
     /**
-     * Every visible content of the channel, newest first, without blocks.
+     * Every visible and listed content of the channel, newest first, without blocks.
      *
      * @return list<Content>
      */
