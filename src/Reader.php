@@ -285,6 +285,6 @@ final readonly class Reader
             return null;
         }
 
-        return $this->markdown->toInlineHtml(preg_replace('/\R\s*\R/', "\n", $text) ?? $text);
+        return $this->markdown->toInlineHtml(preg_replace('/\R(?:[ \t]*\R)+/u', "\n", $text) ?? $text);
     }
 }

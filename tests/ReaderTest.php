@@ -282,6 +282,22 @@ final class ReaderTest extends TestCase
         self::assertNull($content->blocks[0]->picture->credit);
     }
 
+    public function testALineBreakAfterACharacterEndingInTheByteOfANextLineStaysIntact(): void
+    {
+        $content = $this->reader->toContent($this->payload([
+            [
+                'type' => 'image',
+                'alt' => 'A picture',
+                'caption' => "Lecker 🍅\nZwei.",
+                'credit' => "Å\n\nх",
+                'sources' => [['url' => 'https://k.example/a/large.jpg', 'width' => 800, 'height' => 600]],
+            ],
+        ]));
+
+        self::assertSame("Lecker 🍅\nZwei.", $content->blocks[0]->picture->caption);
+        self::assertSame("Å\nх", $content->blocks[0]->picture->credit);
+    }
+
     public function testOneSizeCarriesNoSourceSet(): void
     {
         $content = $this->reader->toContent($this->payload([
