@@ -17,7 +17,8 @@ namespace Krausgebaut\KongtentBundle;
 final readonly class Picture
 {
     /**
-     * The sources are ordered small to large and never empty.
+     * The sources are ordered small to large and never empty. Caption and
+     * credit went through `Markdown`; the alternative text is plain text.
      *
      * @param list<array{url: string, width: int, height: int}> $sources
      */

@@ -247,6 +247,41 @@ final class ReaderTest extends TestCase
         );
     }
 
+    public function testCaptionAndCreditReadMarkdown(): void
+    {
+        $content = $this->reader->toContent($this->payload([
+            [
+                'type' => 'image',
+                'alt' => '*A picture*',
+                'caption' => 'The [earrings](https://example.com/model) by 3Dave.',
+                'credit' => '*Marcel* <b>Kraus</b>',
+                'sources' => [['url' => 'https://k.example/a/large.jpg', 'width' => 800, 'height' => 600]],
+            ],
+        ]));
+
+        $picture = $content->blocks[0]->picture;
+
+        self::assertSame('The <a href="https://example.com/model">earrings</a> by 3Dave.', $picture->caption);
+        self::assertSame('<em>Marcel</em> &lt;b&gt;Kraus&lt;/b&gt;', $picture->credit);
+        self::assertSame('*A picture*', $picture->alternativeText);
+    }
+
+    public function testABlankLineInACaptionIsALineBreak(): void
+    {
+        $content = $this->reader->toContent($this->payload([
+            [
+                'type' => 'image',
+                'alt' => 'A picture',
+                'caption' => "One.\n\n  \nTwo.",
+                'credit' => '   ',
+                'sources' => [['url' => 'https://k.example/a/large.jpg', 'width' => 800, 'height' => 600]],
+            ],
+        ]));
+
+        self::assertSame("One.\nTwo.", $content->blocks[0]->picture->caption);
+        self::assertNull($content->blocks[0]->picture->credit);
+    }
+
     public function testOneSizeCarriesNoSourceSet(): void
     {
         $content = $this->reader->toContent($this->payload([

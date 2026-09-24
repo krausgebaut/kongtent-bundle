@@ -15,9 +15,9 @@
     >
     {% if block.picture.caption or block.picture.credit %}
         <figcaption>
-            {{- block.picture.caption -}}
+            {{- block.picture.caption|raw -}}
             {% if block.picture.caption and block.picture.credit %} {% endif %}
-            {%- if block.picture.credit %}<small>{{ block.picture.credit }}</small>{% endif -%}
+            {%- if block.picture.credit %}<small>{{ block.picture.credit|raw }}</small>{% endif -%}
         </figcaption>
     {% endif %}
 </figure>

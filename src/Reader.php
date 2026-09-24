@@ -146,8 +146,8 @@ final readonly class Reader
     {
         return new Picture(
             $this->optionalText($data, 'alt') ?? '',
-            $this->optionalText($data, 'caption'),
-            $this->optionalText($data, 'credit'),
+            $this->optionalInlineHtml($data, 'caption'),
+            $this->optionalInlineHtml($data, 'credit'),
             $this->sources($data, $slug),
         );
     }
@@ -269,5 +269,22 @@ final readonly class Reader
         $value = $data[$key] ?? null;
 
         return \is_string($value) && '' !== $value ? $value : null;
+    }
+
+    /**
+     * A blank line would start a second paragraph, which an inline text
+     * refuses; it is read as a line break instead.
+     *
+     * @param array<string, mixed> $data
+     */
+    private function optionalInlineHtml(array $data, string $key): ?string
+    {
+        $text = trim($this->optionalText($data, $key) ?? '');
+
+        if ('' === $text) {
+            return null;
+        }
+
+        return $this->markdown->toInlineHtml(preg_replace('/\R\s*\R/', "\n", $text) ?? $text);
     }
 }

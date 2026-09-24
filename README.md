@@ -62,7 +62,7 @@ A list of contents is not a list of texts: whoever draws an overview works from 
 | 4 | `HeadingBlock` | `html` | – |
 | 5 | `ListBlock` | `items` | `style` |
 | 6 | `ParagraphBlock` | `html` | – |
-| 7 | `Picture` | – | `alternativeText`, `caption`, `credit` |
+| 7 | `Picture` | `caption`, `credit` | `alternativeText` |
 | 8 | `QuoteBlock` | `html` | `source` |
 
 `Content` also carries `date`, `coverImage` as a `Picture` or `null`, `blocks`, `listed` and `getYear()`. `listed` is `false` only where kongtent says so: a content left out of the lists and read by its slug alone. A `Picture` answers `getUrl()`, `getWidth()` and `getHeight()` for its largest size and `getSourceSet()` for a `srcset`, or `null` where there is only one size. An `ImageBlock` carries its `picture`, a `GalleryBlock` its `images`.
@@ -135,9 +135,9 @@ The bundle's own suite runs with `composer update` and `vendor/bin/phpunit`; the
 
 **A required field that is missing throws, and so does a list or an item of a list of the wrong shape, and a gallery or a term list that is empty.** Thrown as a `RuntimeException`, so the last good answer can stand in. An optional field of the wrong shape counts as absent.
 
-**Three things are tolerated.** A block of an unknown type is skipped and logged, a picture without an alternative text gets an empty one, and a heading outside the second to fourth level is set at the nearest one. The log level is `error`, not `warning`: a production handler that buffers everything below `error` would otherwise never write it.
+**Four things are tolerated.** A block of an unknown type is skipped and logged, a picture without an alternative text gets an empty one, a heading outside the second to fourth level is set at the nearest one, and a blank line in a caption or a credit is read as a line break, since both stay one paragraph. The log level is `error`, not `warning`: a production handler that buffers everything below `error` would otherwise never write it.
 
-**What went through `Markdown` may be printed raw, and nothing else.** The converter escapes HTML, refuses unsafe links and reads inline Markdown only: no text turns into a heading, a list, a quotation, code or an HTML block. A picture in the text becomes a link. A speaker, the name of a term, a caption, a credit and an alternative text are plain text and are escaped. An embedded address is refused unless it is `http` or `https`.
+**What went through `Markdown` may be printed raw, and nothing else.** The converter escapes HTML, refuses unsafe links and reads inline Markdown only: no text turns into a heading, a list, a quotation, code or an HTML block. A picture in the text becomes a link. A speaker, the name of a term and an alternative text are plain text and are escaped. An embedded address is refused unless it is `http` or `https`.
 
 **A date carries the offset out of the payload.** Print it with `false` as its zone, `|date('c', false)`: converted into the zone of the machine, an article dated just after midnight stands under the wrong year.
 

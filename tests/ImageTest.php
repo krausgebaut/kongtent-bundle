@@ -17,20 +17,33 @@ use PHPUnit\Framework\TestCase;
 
 final class ImageTest extends TestCase
 {
-    public function testTheTextsOfAPictureCannotCarryMarkup(): void
+    public function testTheAlternativeTextCannotCarryMarkup(): void
     {
         $html = Templates::twig()->render('@Kongtent/blocks/image.html.twig', [
             'block' => new ImageBlock(new Picture(
                 '"><script>alt</script>',
-                '<script>caption</script>',
-                '<script>credit</script>',
+                null,
+                null,
                 [['url' => 'https://k.example/a/large.jpg', 'width' => 800, 'height' => 600]],
             )),
         ]);
 
         self::assertStringNotContainsString('<script>', $html);
         self::assertStringContainsString('&quot;&gt;&lt;script&gt;alt', $html);
-        self::assertStringContainsString('&lt;script&gt;caption', $html);
-        self::assertStringContainsString('&lt;script&gt;credit', $html);
+    }
+
+    public function testCaptionAndCreditArePrintedAsTheConverterLeftThem(): void
+    {
+        $html = Templates::twig()->render('@Kongtent/blocks/image.html.twig', [
+            'block' => new ImageBlock(new Picture(
+                'alt',
+                'A <a href="https://example.com">caption</a>',
+                '<em>credit</em>',
+                [['url' => 'https://k.example/a/large.jpg', 'width' => 800, 'height' => 600]],
+            )),
+        ]);
+
+        self::assertStringContainsString('A <a href="https://example.com">caption</a>', $html);
+        self::assertStringContainsString('<small><em>credit</em></small>', $html);
     }
 }
