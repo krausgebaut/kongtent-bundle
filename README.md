@@ -38,8 +38,8 @@ kongtent:
 | --- | --- | --- | --- |
 | 1 | `cache` | `cache.app` | The service the answers are held in. It implements both `CacheInterface` and `CacheItemPoolInterface`, as every Symfony cache pool does |
 | 2 | `http_client` | `http_client` | The service kongtent is asked through. Never a caching client: the answer is `private`, and a shared cache refuses it silently |
-| 3 | `key` | – | The key of the site's channel. Required |
-| 4 | `url` | – | The address of kongtent, without a path. Required |
+| 3 | `key` | — | The key of the site's channel. Required |
+| 4 | `url` | — | The address of kongtent, without a path. Required |
 
 ## Reading
 
@@ -58,10 +58,10 @@ A list of contents is not a list of texts: whoever draws an overview works from 
 | --- | --- | --- | --- |
 | 1 | `Content` | `teaser` | `category`, `headline`, `metaDescription`, `metaTitle`, `slug` |
 | 2 | `DetailsBlock` | `items[].html` | `items[].label` |
-| 3 | `EmbedBlock` | – | `key`, `provider`, `url` |
-| 4 | `HeadingBlock` | `html` | – |
+| 3 | `EmbedBlock` | — | `key`, `provider`, `url` |
+| 4 | `HeadingBlock` | `html` | — |
 | 5 | `ListBlock` | `items` | `style` |
-| 6 | `ParagraphBlock` | `html` | – |
+| 6 | `ParagraphBlock` | `html` | — |
 | 7 | `Picture` | `caption`, `credit` | `alternativeText` |
 | 8 | `QuoteBlock` | `html` | `source` |
 
@@ -77,7 +77,7 @@ Every block is rendered by `@Kongtent/blocks/<type>.html.twig`, in blank markup:
 
 | # | Type | Class | Markup |
 | --- | --- | --- | --- |
-| 1 | `details` | `DetailsBlock` | `<dl>` – a term list, not the HTML `<details>` element |
+| 1 | `details` | `DetailsBlock` | `<dl>`—a term list, not the HTML `<details>` element |
 | 2 | `embed` | `EmbedBlock` | A link to the address. Nothing is loaded from the provider |
 | 3 | `gallery` | `GalleryBlock` | `<ul>`, each picture through the `image` template |
 | 4 | `heading` | `HeadingBlock` | `<h2>` to `<h4>` |
@@ -86,7 +86,7 @@ Every block is rendered by `@Kongtent/blocks/<type>.html.twig`, in blank markup:
 | 7 | `paragraph` | `ParagraphBlock` | `<p>` |
 | 8 | `quote` | `QuoteBlock` | `<figure>` with `<blockquote>` and `<figcaption>` |
 
-A `GalleryBlock` carries its pictures as `ImageBlock`s in the order they were put in, so a site that overrides the `image` template styles its galleries along with it. An `EmbedBlock` carries the `url` as typed, plus `provider` and `key` where kongtent recognized the address – YouTube today – and `null` for both otherwise; a site that wants a player builds it in its own version of the template.
+A `GalleryBlock` carries its pictures as `ImageBlock`s in the order they were put in, so a site that overrides the `image` template styles its galleries along with it. An `EmbedBlock` carries the `url` as typed, plus `provider` and `key` where kongtent recognized the address—YouTube today—and `null` for both otherwise; a site that wants a player builds it in its own version of the template.
 
 ### Overriding a template
 
@@ -98,7 +98,7 @@ A site puts its own version under `templates/bundles/KongtentBundle/blocks/<type
 
 ## Tests
 
-A site's suite never reaches the network. `Krausgebaut\KongtentBundle\Test\RecordedClient::fromDirectory()` answers out of recorded files – `list.json` for the list, `<slug>.json` for one content, and `404` for everything else:
+A site's suite never reaches the network. `Krausgebaut\KongtentBundle\Test\RecordedClient::fromDirectory()` answers out of recorded files—`list.json` for the list, `<slug>.json` for one content, and `404` for everything else:
 
 ```yaml
 # config/packages/kongtent.yaml
@@ -123,7 +123,7 @@ The bundle's own suite runs with `composer update` and `vendor/bin/phpunit`; the
 
 **The key travels in the `X-Api-Key` header and nowhere else.** In the address it would work, and land in every access log.
 
-**A slug is asked for only in kongtent's own grammar** – lower-case letters and digits between single hyphens. Anything else answers `null` without a request, so an address a site hands over unchecked can carry neither a query nor a way up onto kongtent.
+**A slug is asked for only in kongtent's own grammar**—lower-case letters and digits between single hyphens. Anything else answers `null` without a request, so an address a site hands over unchecked can carry neither a query nor a way up onto kongtent.
 
 **A call ends after 5 seconds of silence or 10 in total**, so a kongtent that trickles does not hold a page open.
 
