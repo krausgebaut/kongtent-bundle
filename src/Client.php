@@ -178,7 +178,7 @@ final readonly class Client
     }
 
     /**
-     * Without a `max-age`, nothing is held – the number is kongtent's.
+     * Without a `max-age`, nothing is held—the number is kongtent's.
      *
      * @param array<string, list<string>> $headers
      */

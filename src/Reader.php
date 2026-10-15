@@ -23,7 +23,7 @@ use Krausgebaut\KongtentBundle\Block\QuoteBlock;
 use Psr\Log\LoggerInterface;
 
 /**
- * One answer of kongtent, turned into objects – a defect throws a
+ * One answer of kongtent, turned into objects—a defect throws a
  * `RuntimeException`, so the last good answer can stand in.
  */
 final readonly class Reader

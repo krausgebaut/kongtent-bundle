@@ -16,7 +16,7 @@ use League\CommonMark\MarkdownConverter;
 
 /**
  * The one place Markdown out of kongtent becomes HTML, escaping HTML and
- * refusing unsafe links – what makes a `raw` in a template safe.
+ * refusing unsafe links—what makes a `raw` in a template safe.
  */
 final readonly class Markdown
 {

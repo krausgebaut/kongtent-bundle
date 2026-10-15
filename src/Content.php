@@ -14,7 +14,7 @@ namespace Krausgebaut\KongtentBundle;
 use Krausgebaut\KongtentBundle\Block\Block;
 
 /**
- * One content – a summary out of the list carries no blocks.
+ * One content—a summary out of the list carries no blocks.
  */
 final readonly class Content
 {
